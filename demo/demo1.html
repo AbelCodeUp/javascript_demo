@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery.min.js"></script>
+	<style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	ul,li{
+		list-style: none;
+	}
+	li{
+		height: 30px;
+		background: #ddd;
+		border-bottom: 1px solid #fff;
+		text-align: center;
+		line-height: 30px;
+		color: #fff;
+		cursor: default;
+	}
+		.selectbox{
+			width: 200px;
+			height: 110px;
+			border: 1px solid #ccc;
+			float: left;
+			margin-right: 20px;
+		}
+	</style>
+	<script>
+		$(function(){
+			
+			// var attr2 = [];
+			$(".box").on('click','li',function(){
+				//attr1.push($(this));
+				$(this).appendTo('.box2');
+				
+				sortInt($('.box2'));
+			})
+			$(".box2").on('click','li',function(){
+		
+				$(this).appendTo('.box');
+				sortInt($('.box'));
+			})
+			//排续
+			function sortInt(box){
+				var attr1 = [];
+				//console.log($("li",$(".box2")).length)
+				$.each(box.find("li"),function(index,element){
+
+					attr1.push($(element));
+
+				})
+				console.log(attr1);
+				attr1.sort(
+					function (a,b){
+					return a.attr("v") > b.attr("v");
+					}
+				)
+				box.empty().append(attr1);
+			}
+		})
+	</script>
+</head>
+<body>
+	<div class="selectbox">
+		<ul class="box">
+			<li v="0">选项1</li>
+			<li v="1">选项2</li>
+			<li v="2">选项3</li>
+		</ul>
+	</div>
+	<div class="selectbox">
+		<ul class="box2">
+			
+		</ul>
+	</div>
+
+</body>
+</html>
